@@ -10,7 +10,7 @@ import ru.itis.testwork1.service.impl.UserServiceImpl;
 
 import java.io.IOException;
 
-@WebServlet("/registration")
+@WebServlet("/register")
 public class RegistrationServlet extends HttpServlet {
     private final UserService userService = new UserServiceImpl();
 

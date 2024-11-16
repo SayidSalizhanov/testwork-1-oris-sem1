@@ -13,24 +13,24 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        jakarta.servlet.Filter.super.init(filterConfig);
+        Filter.super.init(filterConfig);
+    }
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+
+        String uri = httpServletRequest.getRequestURI();
+        HttpSession session = httpServletRequest.getSession(false);
+        if (session == null && !uri.equals("/login") && !uri.equals("/register")) {
+            ((HttpServletResponse) response).sendRedirect("/login");
+        } else {
+            chain.doFilter(request, response);
+        }
     }
 
     @Override
     public void destroy() {
-        jakarta.servlet.Filter.super.destroy();
-    }
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
-        HttpSession session = httpServletRequest.getSession(false);
-
-        if (session == null || session.getAttribute("login") == null) {
-            httpServletResponse.sendRedirect("/");
-        } else {
-            filterChain.doFilter(servletRequest, servletResponse);
-        }
+        Filter.super.destroy();
     }
 }

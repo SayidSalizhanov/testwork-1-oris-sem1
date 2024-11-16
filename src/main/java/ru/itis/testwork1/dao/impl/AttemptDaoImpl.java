@@ -19,6 +19,7 @@ public class AttemptDaoImpl implements AttemptDao {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet != null) {
+                resultSet.next();
                 return new Attempt(
                         resultSet.getInt("id"),
                         resultSet.getString("login"),
@@ -40,6 +41,7 @@ public class AttemptDaoImpl implements AttemptDao {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet != null) {
+                resultSet.next();
                 return new Attempt(
                         resultSet.getInt("id"),
                         resultSet.getString("login"),

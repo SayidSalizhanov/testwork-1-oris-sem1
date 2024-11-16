@@ -13,7 +13,7 @@ import ru.itis.testwork1.util.PasswordUtil;
 
 import java.io.IOException;
 
-@WebServlet("/")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     private final UserService userService = new UserServiceImpl();
     private final AttemptService attemptService = new AttemptServiceImpl();
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 
             attemptService.save(login, false);
 
-            resp.sendRedirect("/");
+            resp.sendRedirect("/login");
         }
     }
 }

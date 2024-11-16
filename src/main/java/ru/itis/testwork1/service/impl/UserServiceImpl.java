@@ -6,6 +6,7 @@ import ru.itis.testwork1.dao.impl.UserDaoImpl;
 import ru.itis.testwork1.dto.UserLoginDto;
 import ru.itis.testwork1.entity.User;
 import ru.itis.testwork1.service.UserService;
+import ru.itis.testwork1.util.PasswordUtil;
 
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
                         null,
                         name,
                         login,
-                        password
+                        PasswordUtil.encrypt(password)
                 )
         );
     }

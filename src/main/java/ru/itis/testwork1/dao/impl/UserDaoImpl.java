@@ -19,6 +19,7 @@ public class UserDaoImpl implements UserDao {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet != null) {
+                resultSet.next();
                 return new User(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
@@ -40,6 +41,7 @@ public class UserDaoImpl implements UserDao {
             statement.setString(1, login);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet != null) {
+                resultSet.next();
                 return new User(
                         resultSet.getInt("id"),
                         resultSet.getString("name"),
