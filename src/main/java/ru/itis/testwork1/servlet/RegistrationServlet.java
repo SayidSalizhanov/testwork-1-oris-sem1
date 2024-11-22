@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import ru.itis.testwork1.service.UserService;
 import ru.itis.testwork1.service.impl.UserServiceImpl;
 
@@ -24,6 +25,10 @@ public class RegistrationServlet extends HttpServlet {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+
+        HttpSession session = req.getSession();
+        session.setAttribute("login", login);
+        session.setMaxInactiveInterval(60 * 60);
 
         userService.register(name, login, password);
 
